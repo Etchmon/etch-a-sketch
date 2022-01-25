@@ -31,7 +31,7 @@ function changeGrid(size) {
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-    for (i = 0; i < size; i++) {
+    for (i = 0; i < size * size; i++) {
         let div = document.createElement("div");
 
         div.className = "panel";
@@ -42,6 +42,6 @@ function changeGrid(size) {
 }
 
 function reloadGrid() {
-    grid.innerHTML = '';
+    container.innerHTML = '';
     changeGrid(activeSize);
 }
