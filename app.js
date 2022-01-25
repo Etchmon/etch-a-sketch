@@ -1,8 +1,13 @@
 const defaultSize = 16;
+const defaultColor = '#000';
+
+let activeSize = defaultSize;
+let color = defaultColor;
 
 let slider = document.getElementById('grid');
 let size = document.getElementById('size');
-let activeSize = defaultSize;
+let colorPicker = document.getElementById('color');
+
 let container = document.getElementById('container');
 
 function setSize(newSize) {
@@ -11,6 +16,7 @@ function setSize(newSize) {
 
 slider.onmouseover = (e) => udpdateSize(e.target.value);
 slider.onchange = (e) => sizeChange(e.target.value);
+colorPicker.onchange = (e) => selectColor(e.target.value);
 
 function udpdateSize(value) {
     size.innerHTML = value + ' x ' + value;
@@ -24,7 +30,11 @@ function sizeChange(value) {
 }
 
 function colorChange(e) {
-    e.target.style.backgroundColor = "black";
+    e.target.style.backgroundColor = color;
+}
+
+function selectColor(newColor) {
+    color = newColor;
 }
 
 function changeGrid(size) {
@@ -44,4 +54,12 @@ function changeGrid(size) {
 function reloadGrid() {
     container.innerHTML = '';
     changeGrid(activeSize);
+}
+
+function clearGrid() {
+    container.innerHTML = '';
+}
+
+window.onload = () => {
+    changeGrid(defaultSize)
 }
